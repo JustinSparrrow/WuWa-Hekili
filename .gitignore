@@ -3,6 +3,7 @@
 
 assets/assets_temp
 assets/video
+tests
 
 __pycache__/
 *.pyc
