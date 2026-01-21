@@ -1,0 +1,10 @@
+.vscode/
+.idea/
+
+assets/assets_temp
+assets/video
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

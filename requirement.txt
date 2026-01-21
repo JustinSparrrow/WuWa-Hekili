@@ -1,0 +1,6 @@
+numpy==2.4.1
+opencv-python==4.13
+pillow==12.1
+pygame==2.6.1
+pyside==6.10.1
+shiboken6==6.10
