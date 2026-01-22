@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QTimer
 
 from utils.asset_manager import AssetManager
-from utils.input_listener import InputListener  # <-- 导入新写的监听器
+from utils.input_listener import InputListener
 from core.preset.director import Director
 from ui.overlay_window import HekiliOverlay
 from configs.team_gabriella_lupa_moning import TEAM_CONFIG, OPENER_SCRIPT, LOOP_SCRIPT, INITIAL_CHAR_INDEX
@@ -13,11 +13,11 @@ from configs.team_gabriella_lupa_moning import TEAM_CONFIG, OPENER_SCRIPT, LOOP_
 def main():
     app = QApplication(sys.argv)
 
-    # 1. 资源与逻辑初始化
+    # 1. 初始化逻辑
     base_dir = os.path.dirname(os.path.abspath(__file__))
     assets_path = os.path.join(base_dir, "assets", "assets")
-
     asset_mgr = AssetManager(assets_path)
+
     director = Director(
         team_config=TEAM_CONFIG,
         opener_script=OPENER_SCRIPT,
@@ -30,51 +30,53 @@ def main():
     window = HekiliOverlay()
     window.show()
 
-    # 3. 核心刷新函数
+    is_active = False
+
     def refresh_ui():
         data = director.get_visual_data(preview_count=3)
         window.update_ui(data)
 
-    # 先刷第一帧
     refresh_ui()
 
-    # 4. 启动手柄监听线程
-    # ------------------------------------------------
-    input_thread = InputListener()
-
-    # 定义回调：当收到信号时执行什么
+    # 3. 输入处理逻辑
     def on_action(action_name, is_down):
-        # 导演现在需要知道是按下还是松开
-        success = director.input_received(action_name, is_down)
-        if success:
+        nonlocal is_active
+
+        # === 核心：X 键 (start_trigger) 逻辑 ===
+        if is_down and action_name == "start_trigger":
+            # 无论是否已激活，按 X 键统统重置到起手轴开头
+            director.reset()
+            is_active = True
+            # 给 UI 一个激活反馈边框 (金色)
+            window.slot_current.setStyleSheet(
+                "ActionWidget { border: 4px solid #FFD700; background-color: rgba(0,0,0,180); }")
+            refresh_ui()
+            return
+
+        # 如果未按 X 激活，则忽略其他所有输入
+        if not is_active:
+            return
+
+        # 正常连招判定
+        if director.input_received(action_name, is_down):
             refresh_ui()
 
-    # 2. ✨ 新增：处理“时间驱动”的自动跳转
+    # 4. 时间驱动跳转
     def timer_tick():
-        # 问导演：时间到了吗？
-        if director.check_auto_advance():
-            # 如果是因为时间到了而跳转的，刷新 UI
+        if is_active and director.check_auto_advance():
             refresh_ui()
 
-    # 3. 启动心跳定时器 (每 50 毫秒检查一次)
     heartbeat_timer = QTimer()
     heartbeat_timer.timeout.connect(timer_tick)
     heartbeat_timer.start(50)
 
-    # 连接信号与槽
+    # 5. 启动监听
+    input_thread = InputListener()
     input_thread.action_detected.connect(on_action)
-
-    # 线程启动！
     input_thread.start()
-    # ------------------------------------------------
 
-    print("✅ 系统已启动，请按手柄操作...")
-
-    ret = app.exec()
-
-    # 程序退出时，停止线程
-    input_thread.stop()
-    sys.exit(ret)
+    # 静默启动
+    sys.exit(app.exec())
 
 
 if __name__ == "__main__":

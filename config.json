@@ -4,8 +4,8 @@
     "theme": "default",
     "window_opacity": 0.9,
     "heavy_hold_time": 0.5,
-    "window_x": 873,
-    "window_y": 509
+    "window_x": 1027,
+    "window_y": 565
   },
   "controller": {
     "hardware_mapping": {
@@ -54,6 +54,7 @@
   },
   "keymaps": {
     "xbox": {
+      "start_trigger": "xbox_button_color_x",
       "basic": "xbox_button_color_b",
       "skill": "xbox_button_color_y",
       "ult": "xbox_rb",

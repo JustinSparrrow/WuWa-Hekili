@@ -149,3 +149,6 @@ class Director:
 
     def reset(self):
         self.step_index = 0
+        self.is_in_opener = True if self.opener else False
+        self.is_holding = False
+        self.button_press_start_time = 0
