@@ -3,7 +3,9 @@
 
 assets/assets_temp
 assets/video
+assets/ui
 tests
+assets/kenney_input-prompts_1.4.1
 
 __pycache__/
 *.pyc

@@ -1,11 +1,11 @@
 {
   "settings": {
-    "current_device": "xbox",
+    "current_device": "keyboard",
     "theme": "default",
     "window_opacity": 0.9,
     "heavy_hold_time": 0.5,
-    "window_x": 1027,
-    "window_y": 565
+    "window_x": 773,
+    "window_y": 957
   },
   "controller": {
     "hardware_mapping": {
@@ -54,11 +54,11 @@
   },
   "keymaps": {
     "xbox": {
-      "start_trigger": "xbox_button_color_x",
-      "basic": "xbox_button_color_b",
-      "skill": "xbox_button_color_y",
+      "start_trigger": "xbox_button_x",
+      "basic": "xbox_button_b",
+      "skill": "xbox_button_y",
       "ult": "xbox_rb",
-      "jump": "xbox_button_color_a",
+      "jump": "xbox_button_a",
       "dash": "xbox_rt",
       "dodge": "xbox_rt",
       "echo": "xbox_lt",
@@ -69,15 +69,17 @@
     },
     "keyboard": {
       "basic": "mouse_left",
-      "skill": "key_e",
-      "ult": "key_r",
-      "jump": "key_space",
+      "skill": "keyboard_e",
+      "ult": "keyboard_r",
+      "jump": "keyboard_space",
       "dash": "key_shift",
-      "dodge": "xbox_rt",
-      "echo": "key_q",
-      "intro_1": "key_1",
-      "intro_2": "key_2",
-      "intro_3": "key_3"
+      "dodge": "mouse_right",
+      "echo": "keyboard_q",
+      "intro_1": "keyboard_1",
+      "intro_2": "keyboard_2",
+      "intro_3": "keyboard_3",
+      "start_trigger": "keyboard_f",
+      "lock": "mouse_scroll"
     }
   }
 }

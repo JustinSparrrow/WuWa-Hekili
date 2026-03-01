@@ -121,6 +121,7 @@ class AssetManager:
     def get_button_path(self, action_type, target_index=None):
         """
         获取手柄/键盘按键图标
+        逻辑：直接去 config 找文件名，然后去 assets/ui/{device}/ 下找对应的 png
         :param action_type: 动作类型
         :param target_index: 切人目标位置 (1, 2, 3)
         """
@@ -134,18 +135,21 @@ class AssetManager:
         # 从 config 获取按键图片文件名
         btn_filename = config.get(f"keymaps.{device}.{lookup_key}")
 
-        if not btn_filename:
-            # 回退尝试找通用 intro
+        # 回退尝试找通用 intro
+        if not btn_filename and "intro" in lookup_key:
             btn_filename = config.get(f"keymaps.{device}.{action_type}")
-            if not btn_filename:
-                return None
+
+        if not btn_filename:
+            return None
 
         # 路径: assets/ui/xbox/xbox_button_x.png
         path = os.path.join(self.ui_path, device, f"{btn_filename}.png")
 
         if os.path.exists(path):
             return path
-        return None
+        else:
+            print(f"⚠ 缺失按键图: {path}")
+            return None
 
 
 # ================= 测试代码 =================
