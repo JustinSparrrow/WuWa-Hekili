@@ -27,7 +27,7 @@
 >     *   目前尚未实装“预输入（合轴）”检测和精细的“输入间隔”控制，因此实际上手表现很鸡肋。
 > *   **关于操作 (Gameplay)**：视频仅用于展示程序功能，操作过程中为了配合脚本判定可能略显僵硬/迟钝，**绝不代表作者真实游戏水平QAQ！**
 
-![演示视频_v1](docs/demo/demo_v1.mp4)
+[![演示视频_v1](docs/demo/demo_v1.mp4)](https://github.com/JustinSparrrow/WuWa-Hekili/issues/1#issue-4007743699)
 
 ## 📂 项目结构
 ```text
