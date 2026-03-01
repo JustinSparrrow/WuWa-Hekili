@@ -19,6 +19,16 @@
   - 窗口可自由拖动，位置自动保存。 
   - 所有按键映射、角色武器映射、UI 不透明度均可通过 config.json 修改。
 
+## 🎥 演示视频 (v1.0 Preview)
+> **⚠️ 特别声明 / Disclaimer**
+> 
+> *   **轴来源 (Rotation Source)**：本演示视频中的输出轴逻辑参考自 Bilibili UP主 **[Hagoromogizune](https://www.bilibili.com/video/BV14erDB4E14/)**。感谢大佬的思路！
+> *   **开发阶段 (Dev Stage)**：当前展示的仅为 **Version 1** 版本，核心目的是验证逻辑跑通。
+>     *   目前尚未实装“预输入（合轴）”检测和精细的“输入间隔”控制，因此实际上手表现很鸡肋。
+> *   **关于操作 (Gameplay)**：视频仅用于展示程序功能，操作过程中为了配合脚本判定可能略显僵硬/迟钝，**绝不代表作者真实游戏水平QAQ！**
+
+![演示视频_v1](docs/demo/demo_v1.mp4)
+
 ## 📂 项目结构
 ```text
 WuWa_Hekili/
