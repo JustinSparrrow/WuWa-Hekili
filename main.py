@@ -11,6 +11,7 @@ from ui.settings_window import SettingsWindow
 # 导入逻辑核心
 from utils.asset_manager import AssetManager
 from utils.input_listener import InputListener
+from utils.logger import log
 from core.preset.director import Director
 
 # 导入默认剧本 (未来这里应该由"流程选择"动态加载)
@@ -23,7 +24,6 @@ def main():
     # ==========================================
     # 1. 全局变量占位 (初始化为 None)
     # ==========================================
-    # 这些变量只有在点击"开始"后才会被赋值
     window = None
     director = None
     input_thread = None
@@ -40,18 +40,18 @@ def main():
     # 3. 定义核心逻辑 (闭包函数)
     # ==========================================
 
-    def refresh_ui():
+    # 💡 修改 1：增加 is_advance 参数
+    def refresh_ui(is_advance=False):
         """刷新悬浮窗 UI"""
         if window and director:
             data = director.get_visual_data(preview_count=3)
-            window.update_ui(data)
+            # 传给 UI 引擎，决定是播放动画还是瞬间对齐
+            window.update_ui(data, is_advance=is_advance)
+
+    log.info("============== 🚀 Hekili 启动 ==============")
 
     def start_execution():
-        """
-        【核心启动函数】
-        当在菜单点击"流程选择"(暂代开始键)时调用
-        负责：隐藏菜单 -> 加载资源 -> 显示悬浮窗 -> 启动监听
-        """
+        log.info("正在初始化核心逻辑...")
         nonlocal window, director, input_thread, heartbeat_timer, is_active
 
         print("🚀 正在初始化核心逻辑...")
@@ -74,37 +74,47 @@ def main():
 
         # C. 初始化并显示悬浮窗
         window = HekiliOverlay()
-        # 把设置信号连回去 (允许在悬浮窗右键打开设置)
         window.open_settings_signal.connect(settings_win.show)
         window.show()
 
-        # D. 定义交互回调 (Action Handler)
+        # D. 定义交互回调
         def on_action(action_name, is_down):
             nonlocal is_active
 
-            # --- 激活逻辑 ---
             if not is_active:
                 if is_down and action_name == "start_trigger":
                     is_active = True
-                    print("🚀 [System] 脚本正式激活！")
+                    log.info("✅ 脚本正式激活！(触发了 start_trigger)")
                     window.slot_current.setStyleSheet("ActionWidget { border: 4px solid #00FF00; }")
-                    director.reset()  # 确保重置
-                    refresh_ui()
+                    director.reset()
+                    refresh_ui(is_advance=False)
+                else:
+                    if is_down:
+                        log.debug(f"尚未激活，忽略输入: {action_name}")
                 return
 
-            # --- 运行逻辑 ---
+            # 如果已激活
             if is_down:
-                print(f"🎮 输入: {action_name}")
+                log.debug(f"🎮 收到输入: {action_name}")
 
-            if director.input_received(action_name, is_down):
-                refresh_ui()
+            # 导演判定
+            success = director.input_received(action_name, is_down)
+            if success:
+                log.info(f"✅ 动作执行成功: {action_name}")
+                refresh_ui(is_advance=True)
+            elif is_down:
+                # 判定失败，记录案发现场
+                expected_type = director.get_current_script()[director.step_index].get("type")
+                variant = director.get_current_script()[director.step_index].get("variant", "")
+                log.warning(f"❌ 动作错误: 期待 {expected_type}({variant})，实际收到 {action_name}")
 
-        # E. 定义时间回调 (Timer)
         def timer_tick():
             if is_active and director.check_auto_advance():
-                refresh_ui()
+                log.info("⏱️ 长按时间达标，自动推进！")
+                refresh_ui(is_advance=True)
 
-        # F. 启动定时器
+        log.info("✅ 悬浮窗已启动，等待激活按键...")
+
         heartbeat_timer = QTimer()
         heartbeat_timer.timeout.connect(timer_tick)
         heartbeat_timer.start(50)
@@ -114,9 +124,9 @@ def main():
         input_thread.action_detected.connect(on_action)
         input_thread.start()
 
-        # 初始刷新一下
-        refresh_ui()
-        print("✅ 悬浮窗已启动，请按 X 激活...")
+        # 💡 修改 5：开机第一眼看到的画面，静态铺好
+        refresh_ui(is_advance=False)
+        print("✅ 悬浮窗已启动，请按启动键(X)激活...")
 
     # ==========================================
     # 4. 连接设置相关信号
@@ -124,13 +134,12 @@ def main():
 
     def on_config_reload():
         print("🔄 [System] 配置已修改，正在重载...")
-        # 只有当监听器已经运行时，才需要热重载
         if input_thread and input_thread.isRunning():
             input_thread.reload_mapping()
 
-        # 如果悬浮窗已经显示，刷新一下图标
         if window:
-            refresh_ui()
+            # 💡 修改 6：设置改完后，图标可能会变，瞬间刷新不要动画
+            refresh_ui(is_advance=False)
 
     settings_win.config_saved.connect(on_config_reload)
 
@@ -146,22 +155,20 @@ def main():
         print("🔘 [TODO] 流程上传功能开发中...")
 
     def show_select_routine():
-        # 目前暂时把"流程选择"按钮当作"开始运行"按钮
         print("🔘 选择默认流程 -> 启动悬浮窗")
         start_execution()
 
     menu.open_settings.connect(show_settings)
     menu.open_upload.connect(show_upload)
-    menu.open_select.connect(show_select_routine)  # 👈 这里连接启动逻辑
+    menu.open_select.connect(show_select_routine)
 
     # ==========================================
     # 6. 启动程序
     # ==========================================
-    menu.show()  # 只显示菜单
+    menu.show()
 
     ret = app.exec()
 
-    # 退出清理
     if input_thread:
         input_thread.stop()
     sys.exit(ret)

@@ -1,5 +1,6 @@
 import time
 from utils.config_manager import config
+from utils.logger import log
 
 
 class Director:
@@ -128,23 +129,21 @@ class Director:
         return False
 
     def advance(self):
-        """执行推进逻辑 (保持不变)"""
-        current_script = self.get_current_script()
-        current_action = current_script[self.step_index]
-
+        current_action = self.get_current_script()[self.step_index]
         if current_action.get("type") == "intro":
             next_char = current_action.get("next_char")
             if next_char:
                 self.current_char_idx = next_char
-                print(f"🔄 切人 -> {self.team[next_char]}")
+                log.info(f"🔄 角色切换 -> {self.team[next_char]}")
 
         self.step_index += 1
 
         if self.is_in_opener and self.step_index >= len(self.opener):
-            print("✨ 启动轴结束，进入循环轴！")
+            log.info("✨ 启动轴跑完，切入循环轴！")
             self.is_in_opener = False
             self.step_index = 0
         elif not self.is_in_opener and self.step_index >= len(self.loop):
+            log.info("🔁 循环轴跑完一圈，重新开始！")
             self.step_index = 0
 
     def reset(self):

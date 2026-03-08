@@ -4,8 +4,8 @@
     "theme": "default",
     "window_opacity": 0.9,
     "heavy_hold_time": 0.5,
-    "window_x": 745,
-    "window_y": 960
+    "window_x": 1326,
+    "window_y": 730
   },
   "controller": {
     "hardware_mapping": {
@@ -78,7 +78,7 @@
       "intro_1": "keyboard_1",
       "intro_2": "keyboard_2",
       "intro_3": "keyboard_3",
-      "start_trigger": "keyboard_f",
+      "start_trigger": "keyboard_x",
       "lock": "mouse_scroll"
     }
   }
