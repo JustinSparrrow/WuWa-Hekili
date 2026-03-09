@@ -1,0 +1,8 @@
+Aemeath=sword
+Mornye=broadblade
+Lynae=pistols
+Phrolova=rectifier
+Shorekeeper=rectifier
+Cantarella=rectifier
+Augusta=broadblade
+luno=gauntlets

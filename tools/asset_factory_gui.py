@@ -4,7 +4,7 @@ import cv2
 import json
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QLabel, QComboBox, QPushButton,
-                               QSlider, QFormLayout, QGroupBox, QLineEdit, QFileDialog, QMessageBox)
+                               QSlider, QFormLayout, QGroupBox, QLineEdit, QFileDialog)
 from PySide6.QtCore import Qt, QTimer, Signal, QRect
 from PySide6.QtGui import QImage, QPixmap, QPainter, QPen, QColor
 
@@ -14,15 +14,17 @@ ASSETS_DIR = os.path.join(BASE_DIR, "assets", "assets")
 MAPPING_FILE = os.path.join(ASSETS_DIR, "Character_Occupation.txt")
 FACTORY_CONFIG = os.path.join(BASE_DIR, "tools", "factory_config.json")
 
-# 1-7 对应的文件夹和文件前缀
+# 💡 升级：增加中文描述，并加入回路和协奏值
+# 格式: ("文件夹名", "文件前缀", "中文描述")
 CATEGORIES = [
-    ("normal_attack", "normal"),  # 1
-    ("jump", "jump"),  # 2
-    ("resonance_skill", "skill"),  # 3
-    ("resonance_liberation", "liberation"),  # 4
-    ("echo", "echo"),  # 5
-    ("character", "avatar"),  # 6
-    ("energy_bar", "energy")  # 7
+    ("normal_attack", "normal", "普攻图标"),  # 1
+    ("jump", "jump", "跳跃图标"),  # 2
+    ("resonance_skill", "skill", "共鸣技能"),  # 3
+    ("resonance_liberation", "liberation", "大招"),  # 4
+    ("echo", "echo", "声骸技能"),  # 5
+    ("character", "avatar", "变奏头像"),  # 6
+    ("forte_circuit", "forte", "共鸣回路 (下方条)"),  # 7 (角色专属)
+    ("concerto_energy", "concerto", "协奏值 (左侧圈)")  # 8 (全员通用)
 ]
 
 WEAPONS = ["sword", "broadblade", "pistols", "gauntlets", "rectifier"]
@@ -30,20 +32,19 @@ WEAPONS = ["sword", "broadblade", "pistols", "gauntlets", "rectifier"]
 
 # ---------------- 自定义视频画板 ----------------
 class VideoLabel(QLabel):
-    # 信号：当用户画完一个框时发出 (x, y, w, h)
     roi_drawn = Signal(int, int, int, int)
 
     def __init__(self):
         super().__init__()
-        self.setMinimumSize(960, 540)  # 16:9
+        self.setMinimumSize(960, 540)
         self.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.setStyleSheet("background-color: black;")
 
         self.drawing = False
         self.start_pt = None
         self.current_pt = None
-        self.active_roi_index = -1  # 当前正在设置第几个框
-        self.rois = {}  # 存储 1-7 的真实坐标 (相对于原图)
+        self.active_roi_index = -1
+        self.rois = {}
 
         self.frame_qimage = None
         self.scale_factor = 1.0
@@ -52,7 +53,6 @@ class VideoLabel(QLabel):
 
     def set_image(self, qimg, orig_w, orig_h):
         self.frame_qimage = qimg
-        # 计算缩放比例和黑边偏移量，以便将鼠标坐标准确映射到原图
         lbl_w, lbl_h = self.width(), self.height()
         scale_w, scale_h = lbl_w / orig_w, lbl_h / orig_h
         self.scale_factor = min(scale_w, scale_h)
@@ -77,14 +77,13 @@ class VideoLabel(QLabel):
     def mouseMoveEvent(self, event):
         if self.drawing:
             self.current_pt = event.pos()
-            self.update()  # 触发 paintEvent 画红框
+            self.update()
 
     def mouseReleaseEvent(self, event):
         if self.drawing and event.button() == Qt.MouseButton.LeftButton:
             self.drawing = False
             self.setCursor(Qt.CursorShape.ArrowCursor)
 
-            # 屏幕坐标 -> 原图坐标
             x1 = int((min(self.start_pt.x(), self.current_pt.x()) - self.x_offset) / self.scale_factor)
             y1 = int((min(self.start_pt.y(), self.current_pt.y()) - self.y_offset) / self.scale_factor)
             x2 = int((max(self.start_pt.x(), self.current_pt.x()) - self.x_offset) / self.scale_factor)
@@ -100,19 +99,26 @@ class VideoLabel(QLabel):
     def paintEvent(self, event):
         super().paintEvent(event)
         painter = QPainter(self)
-        painter.setPen(QPen(QColor(0, 255, 0), 2, Qt.PenStyle.SolidLine))
 
         # 画已经保存的框
         for idx, (x, y, w, h) in self.rois.items():
-            # 原图坐标 -> 屏幕坐标
             sx = int(x * self.scale_factor + self.x_offset)
             sy = int(y * self.scale_factor + self.y_offset)
             sw = int(w * self.scale_factor)
             sh = int(h * self.scale_factor)
-            painter.drawRect(sx, sy, sw, sh)
-            painter.drawText(sx, sy - 5, f"[{idx + 1}] {CATEGORIES[idx][0]}")
 
-        # 画正在拖动的框
+            # 特殊区分：7和8用不同的颜色标出
+            if idx >= 6:
+                painter.setPen(QPen(QColor(0, 255, 255), 2, Qt.PenStyle.SolidLine))  # 青色
+            else:
+                painter.setPen(QPen(QColor(0, 255, 0), 2, Qt.PenStyle.SolidLine))  # 绿色
+
+            painter.drawRect(sx, sy, sw, sh)
+
+            # 显示中文描述
+            desc = CATEGORIES[idx][2]
+            painter.drawText(sx, sy - 5, f"[{idx + 1}] {desc}")
+
         if self.drawing and self.start_pt and self.current_pt:
             painter.setPen(QPen(QColor(255, 0, 0), 2, Qt.PenStyle.DashLine))
             painter.drawRect(QRect(self.start_pt, self.current_pt))
@@ -122,14 +128,13 @@ class VideoLabel(QLabel):
 class AssetFactory(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("WuWa Asset Factory (一键素材收割机)")
+        self.setWindowTitle("WuWa Asset Factory v2.0 (支持状态条捕捉)")
         self.resize(1400, 800)
 
         self.cap = None
         self.is_playing = False
         self.orig_frame = None
 
-        # 加载角色和配置
         self.char_weapons = {}
         self._load_character_mapping()
         self._load_config()
@@ -142,10 +147,7 @@ class AssetFactory(QMainWindow):
         self.setCentralWidget(main_widget)
         layout = QHBoxLayout(main_widget)
 
-        # === 左侧：视频播放区域 ===
         left_layout = QVBoxLayout()
-
-        # 控制栏
         video_ctrl = QHBoxLayout()
         self.btn_load_vid = QPushButton("📂 打开视频")
         self.btn_load_vid.clicked.connect(self.load_video)
@@ -159,10 +161,8 @@ class AssetFactory(QMainWindow):
         video_ctrl.addWidget(self.btn_play)
         video_ctrl.addWidget(self.slider)
 
-        # 视频画板
         self.video_label = VideoLabel()
-        self.video_label.rois = self.config.get("rois", {})  # 恢复上次的框
-        # 修复字典的 key 从 string 转回 int
+        self.video_label.rois = self.config.get("rois", {})
         self.video_label.rois = {int(k): v for k, v in self.video_label.rois.items()}
         self.video_label.roi_drawn.connect(self.on_roi_drawn)
 
@@ -170,10 +170,8 @@ class AssetFactory(QMainWindow):
         left_layout.addWidget(self.video_label, stretch=1)
         layout.addLayout(left_layout, stretch=3)
 
-        # === 右侧：控制面板 ===
         right_layout = QVBoxLayout()
 
-        # 1. 角色选择与录入
         group_char = QGroupBox("1. 角色选择与录入")
         form_char = QFormLayout(group_char)
 
@@ -193,25 +191,21 @@ class AssetFactory(QMainWindow):
         form_char.addRow("", self.btn_add_char)
         right_layout.addWidget(group_char)
 
-        # 2. ROI 框选设定
         group_roi = QGroupBox("2. 设定截取区域 (框选一次，永久有效)")
         roi_layout = QVBoxLayout(group_roi)
-        self.roi_labels = []
-        for i, (cat, _) in enumerate(CATEGORIES):
+        for i, (folder, prefix, desc) in enumerate(CATEGORIES):
             row = QHBoxLayout()
-            lbl = QLabel(f"[{i + 1}] {cat}")
+            lbl = QLabel(f"[{i + 1}] {desc}")
             btn = QPushButton("✏️ 画框")
-            # 使用默认参数绑定闭包，避免 i 变量泄露
             btn.clicked.connect(lambda checked=False, idx=i: self.video_label.start_drawing(idx))
             row.addWidget(lbl)
             row.addWidget(btn)
             roi_layout.addLayout(row)
         right_layout.addWidget(group_roi)
 
-        # 3. 日志区
         group_log = QGroupBox("3. 操作日志")
         log_layout = QVBoxLayout(group_log)
-        self.log_text = QLabel("等待操作...\n(在视频暂停时，按下数字键 1-7 一键抓取)")
+        self.log_text = QLabel("等待操作...\n(视频暂停时，按键盘 1-8 一键截取)")
         self.log_text.setWordWrap(True)
         self.log_text.setStyleSheet("color: green; font-weight: bold;")
         log_layout.addWidget(self.log_text)
@@ -224,13 +218,12 @@ class AssetFactory(QMainWindow):
         self.timer = QTimer()
         self.timer.timeout.connect(self.next_frame)
 
-    # ---------------- 业务逻辑 ----------------
     def _load_character_mapping(self):
         if not os.path.exists(ASSETS_DIR): os.makedirs(ASSETS_DIR)
         if os.path.exists(MAPPING_FILE):
             with open(MAPPING_FILE, "r", encoding="utf-8") as f:
                 for line in f:
-                    if "=" in line:
+                    if "=" in line and not line.startswith("#"):
                         c, w = line.strip().split("=", 1)
                         self.char_weapons[c.strip()] = w.strip()
 
@@ -254,7 +247,6 @@ class AssetFactory(QMainWindow):
             self.config = {"rois": {}}
 
     def on_roi_drawn(self, x, y, w, h):
-        # 画完框后，保存配置
         self.config["rois"] = self.video_label.rois
         with open(FACTORY_CONFIG, "w") as f:
             json.dump(self.config, f)
@@ -283,7 +275,6 @@ class AssetFactory(QMainWindow):
             ret, frame = self.cap.read()
             if ret:
                 self.orig_frame = frame
-                # BGR to RGB
                 rgb_img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 h, w, ch = rgb_img.shape
                 qimg = QImage(rgb_img.data, w, h, ch * w, QImage.Format.Format_RGB888)
@@ -293,22 +284,19 @@ class AssetFactory(QMainWindow):
                     self.slider.setValue(int(self.cap.get(cv2.CAP_PROP_POS_FRAMES)))
                     self.slider.blockSignals(False)
 
-    # ---------------- 核心：快捷键截取 ----------------
     def keyPressEvent(self, event):
         key = event.key()
 
-        # 空格键播放/暂停
         if key == Qt.Key.Key_Space:
             self.toggle_play()
             return
 
-        # 1-7 键一键提取
-        if Qt.Key.Key_1 <= key <= Qt.Key.Key_7:
+        # 监听 1-8 键
+        if Qt.Key.Key_1 <= key <= Qt.Key.Key_8:
             if self.orig_frame is None: return
 
             idx = key - Qt.Key.Key_1
 
-            # 检查这个编号的框画了没
             if idx not in self.video_label.rois:
                 self.log(f"❌ 错误：尚未画框！请先点击右侧【[{idx + 1}]】的画框按钮。")
                 return
@@ -318,17 +306,19 @@ class AssetFactory(QMainWindow):
                 self.log("❌ 错误：请先在右上角选择或添加一个角色。")
                 return
 
-            folder_name, prefix = CATEGORIES[idx]
+            folder_name, prefix, desc = CATEGORIES[idx]
             x, y, w, h = self.video_label.rois[idx]
-
-            # 裁剪图片
             crop = self.orig_frame[y:y + h, x:x + w]
 
-            # 创建文件夹
-            save_dir = os.path.join(ASSETS_DIR, char_name, folder_name)
+            # 💡 核心修改：协奏值 (编号8/idx=7) 强制放入 AAA_general
+            if folder_name == "concerto_energy":
+                save_dir = os.path.join(ASSETS_DIR, "AAA_general", folder_name)
+            else:
+                save_dir = os.path.join(ASSETS_DIR, char_name, folder_name)
+
             os.makedirs(save_dir, exist_ok=True)
 
-            # 自动编号寻找：找 normal_1, normal_2...
+            # 自动编号：找 forte_1.png, forte_2.png... (方便记录不同状态的回路)
             count = 1
             while True:
                 filename = f"{prefix}_{count}.png" if count > 1 else f"{prefix}.png"
@@ -338,7 +328,7 @@ class AssetFactory(QMainWindow):
                 count += 1
 
             cv2.imwrite(save_path, crop)
-            self.log(f"📸 成功截取并保存:\n{char_name}/{folder_name}/{filename}")
+            self.log(f"📸 成功截取并保存:\n{save_path.split('assets')[-1]}")
 
     def log(self, text):
         self.log_text.setText(text)

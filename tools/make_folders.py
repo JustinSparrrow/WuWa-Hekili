@@ -4,7 +4,7 @@ import os
 # 这里根据你截图的路径，指向那个放着角色名字的 assets 文件夹
 # 注意：前面加 r 是为了防止转义字符报错
 bash_path = r"../assets/assets"
-folders = ["Aalto", "Aemeath", "Auguusta",
+folders = ["Aalto", "Aemeath", "Augusta",
            "Baizhi", "Brant", "Buling",
            "Calcharo", "Camellya", "Cantarella", "Carlotta", "Cartethyia", "Changli", "Chisa", "Chixia", "Ciaccona",
            "Danjin",
@@ -23,7 +23,7 @@ folders = ["Aalto", "Aemeath", "Auguusta",
            "Xiangli Yao",
            "Yangyang", "Yinlin", "Youhu", "Yuanwu",
            "Zani", "ZheZhi"]
-sub_folders = ["normal_attack", "jump", "resonance_skill", "resonance_liberation", "echo", "character", "energy_bar"]
+sub_folders = ["normal_attack", "jump", "resonance_skill", "resonance_liberation", "echo", "character", "forte_circuit", "concerto_energy"]
 
 
 # ===========================================

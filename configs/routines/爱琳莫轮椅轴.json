@@ -1,0 +1,507 @@
+{
+    "name": "爱琳莫轮椅轴",
+    "team_config": {
+        "1": "Aemeath",
+        "2": "Lynae",
+        "3": "Mornye"
+    },
+    "team_aliases": {
+        "1": "爱",
+        "2": "琳",
+        "3": "莫"
+    },
+    "original_opener": "爱aaaa莫aaazr2a2a2a2e2z2q琳e爱aaaa琳rzq跳跳跳a2爱aafqre3aaaae4z2r2aaaa",
+    "original_loop": "莫r2a2a2a2e2z2q琳e爱aaaa琳rzq跳跳跳a2爱aafqre3aaaae4z2r2aaaa",
+    "opener_script": [
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 3,
+            "desc": "切-Mornye",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "heavy",
+            "desc": "重击",
+            "variant": "heavy",
+            "custom_icon": "normal_2.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放2",
+            "variant": "2",
+            "custom_icon": "liberation_2.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能2",
+            "variant": "2",
+            "custom_icon": "skill_2.png"
+        },
+        {
+            "type": "heavy",
+            "desc": "重击2",
+            "variant": "heavy",
+            "custom_icon": "normal_4.png"
+        },
+        {
+            "type": "echo",
+            "desc": "声骸",
+            "custom_icon": "echo.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 2,
+            "desc": "切-Lynae",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能",
+            "custom_icon": "skill.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 1,
+            "desc": "切-Aemeath",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 2,
+            "desc": "切-Lynae",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放",
+            "custom_icon": "liberation.png"
+        },
+        {
+            "type": "heavy",
+            "desc": "重击",
+            "variant": "heavy",
+            "custom_icon": "normal_2.png"
+        },
+        {
+            "type": "echo",
+            "desc": "声骸",
+            "custom_icon": "echo.png"
+        },
+        {
+            "type": "jump",
+            "desc": "跳跃",
+            "custom_icon": "jump_2.png"
+        },
+        {
+            "type": "jump",
+            "desc": "跳跃",
+            "custom_icon": "jump_2.png"
+        },
+        {
+            "type": "jump",
+            "desc": "跳跃",
+            "custom_icon": "jump_2.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 1,
+            "desc": "切-Aemeath",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "execution",
+            "desc": "处决",
+            "variant": "forte",
+            "custom_icon": "skill.png"
+        },
+        {
+            "type": "echo",
+            "desc": "声骸",
+            "custom_icon": "echo.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放",
+            "custom_icon": "liberation.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能3",
+            "variant": "3",
+            "custom_icon": "skill_3.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能4",
+            "variant": "4",
+            "custom_icon": "skill_4.png"
+        },
+        {
+            "type": "heavy",
+            "desc": "重击2",
+            "variant": "heavy",
+            "custom_icon": "normal_2.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放2",
+            "variant": "2",
+            "custom_icon": "liberation_2.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        }
+    ],
+    "loop_script": [
+        {
+            "type": "intro",
+            "next_char": 3,
+            "desc": "切-Mornye",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放2",
+            "variant": "2",
+            "custom_icon": "liberation_2.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能2",
+            "variant": "2",
+            "custom_icon": "skill_2.png"
+        },
+        {
+            "type": "heavy",
+            "desc": "重击2",
+            "variant": "heavy",
+            "custom_icon": "normal_4.png"
+        },
+        {
+            "type": "echo",
+            "desc": "声骸",
+            "custom_icon": "echo.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 2,
+            "desc": "切-Lynae",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能",
+            "custom_icon": "skill.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 1,
+            "desc": "切-Aemeath",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 2,
+            "desc": "切-Lynae",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放",
+            "custom_icon": "liberation.png"
+        },
+        {
+            "type": "heavy",
+            "desc": "重击",
+            "variant": "heavy",
+            "custom_icon": "normal_2.png"
+        },
+        {
+            "type": "echo",
+            "desc": "声骸",
+            "custom_icon": "echo.png"
+        },
+        {
+            "type": "jump",
+            "desc": "跳跃",
+            "custom_icon": "jump_2.png"
+        },
+        {
+            "type": "jump",
+            "desc": "跳跃",
+            "custom_icon": "jump_2.png"
+        },
+        {
+            "type": "jump",
+            "desc": "跳跃",
+            "custom_icon": "jump_2.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻2",
+            "variant": "2",
+            "custom_icon": "normal_3.png"
+        },
+        {
+            "type": "intro",
+            "next_char": 1,
+            "desc": "切-Aemeath",
+            "custom_icon": "avatar.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "execution",
+            "desc": "处决",
+            "variant": "forte",
+            "custom_icon": "skill.png"
+        },
+        {
+            "type": "echo",
+            "desc": "声骸",
+            "custom_icon": "echo.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放",
+            "custom_icon": "liberation.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能3",
+            "variant": "3",
+            "custom_icon": "skill_3.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "skill",
+            "desc": "技能4",
+            "variant": "4",
+            "custom_icon": "skill_4.png"
+        },
+        {
+            "type": "heavy",
+            "desc": "重击2",
+            "variant": "heavy",
+            "custom_icon": "normal_2.png"
+        },
+        {
+            "type": "ult",
+            "desc": "解放2",
+            "variant": "2",
+            "custom_icon": "liberation_2.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        },
+        {
+            "type": "basic",
+            "desc": "普攻",
+            "custom_icon": "normal.png"
+        }
+    ],
+    "initial_char_index": 1
+}

@@ -29,33 +29,47 @@
 
 [![演示视频_v1](docs/demo/demo_pic.png)](https://github.com/JustinSparrrow/WuWa-Hekili/issues/1#issue-4007743699)
 
-## 📂 项目结构
-```text
-WuWa_Hekili/
-├── main.py                # 程序入口
-├── config.json            # 核心配置文件 (自动生成)
-├── assets/                # 资源文件夹
-│   ├── assets/            # 技能图标库 (按角色/通用分类)
-│   │   ├── AAA_general/   # 通用武器/动作图标
-│   │   ├── Moning/        # 角色专属图标
-│   │   └── Character_Occupation.txt # 角色武器映射表
-│   └── ui/                # 手柄/键盘按钮素材
-├── core/                  # 逻辑引擎
-│   └── preset/
-│       └── director.py    # 连招导演：负责轴的推进与判定
-├── ui/                    # 表现层
-│   ├── overlay_window.py  # 透明置顶窗口逻辑
-│   └── widgets.py         # 单个技能格组件
-├── utils/                 # 工具箱
-│   ├── asset_manager.py   # 资源加载管家
-│   ├── config_manager.py  # 配置读写单例
-│   └── input_listener.py  # 手柄/键盘底层监听线程
-└── tools/                 # 开发辅助
-    ├── extract_assets.py  # 可视化素材切片提取工具
-    └── check_input_ids.py # 手柄硬件 ID 检测工具
+## 🛠️ 安装与运行
+本项目基于 Python 编写，在运行前需要配置相关的运行环境并安装必要的依赖库。请确保你的操作系统为 **Windows 10 或 11**。
+
+### 第一步：安装 Python 环境
+1. 请前往 [Python 官网](https://www.python.org/downloads/) 下载并安装 **Python 3.8 或更高版本**（推荐 Python 3.10+）。
+2. **⚠️ 极其重要**：在安装过程中，务必勾选 **"Add Python to PATH"** 选项。
+
+### 第二步：克隆/下载项目
+你可以使用 Git 克隆本项目，或者直接下载 ZIP 压缩包：
+```bash
+# 使用 Git 克隆
+git clone https://github.com/JustinSparrrow/WuWa_Hekili.git
 ```
 
-## 🛠️ 安装与运行
+下载后，进入项目根目录。
+
+### 安装依赖库
+由于本项目涉及底层硬件监听、图像处理和 GUI 渲染，需要安装几个核心的第三方库。
+在项目根目录（WuWa_Hekili 文件夹下），在地址栏输入 cmd 并回车打开命令行，运行以下命令：
+```bash
+# 推荐使用 requirements.txt 一键安装
+pip install -r requirement.txt
+```
+
+主要依赖说明：
+- PySide6：用于渲染 Hekili 风格的透明悬浮窗口。
+- pygame：用于读取 XInput / DirectInput 手柄信号。
+- keyboard & mouse / ctypes：用于监听键盘与鼠标底层的硬件级输入。
+- opencv-python (cv2)：用于辅助工具中的图像处理。
+
+### 第四步：权限与启动 (极其重要)
+由于《鸣潮》客户端（及其反作弊系统 ACE）通常以高权限运行，为了保证 keyboard 等底层钩子在游戏处于前台时仍能正常监听按键：
+1. 必须以【管理员身份】运行！ 
+   - 如果你使用命令行启动：请右键点击“开始”菜单，选择 “终端(管理员)” 或 “命令提示符(管理员)”，然后 cd 到项目目录。 
+   - 如果你使用 PyCharm / VS Code 等编辑器：请完全关闭编辑器，然后右键点击其快捷方式，选择“以管理员身份运行”。
+2. 启动程序：
+   - 在管理员权限的环境下，运行：`python main.py`
+
+### 第五步：游戏内设置建议
+显示模式：请务必在《鸣潮》游戏设置中将图像显示模式改为 “无边框窗口 (Borderless Windowed)” 或 “窗口化”。如果使用独占全屏，Windows 将无法在游戏画面上方渲染本工具的悬浮窗。
+
 
 ## 📝 如何编写剧本 (Rotation)
 
@@ -71,4 +85,4 @@ WuWa_Hekili/
 3. hekili面板可以正常运行
 
 ## 🧠 下一步
-1. 完善轴到剧本的自动化
+cv

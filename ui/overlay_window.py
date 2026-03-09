@@ -8,6 +8,7 @@ from utils.config_manager import config
 
 class HekiliOverlay(QMainWindow):
     open_settings_signal = Signal()
+    return_to_menu_signal = Signal()
 
     def __init__(self):
         super().__init__()
@@ -154,12 +155,22 @@ class HekiliOverlay(QMainWindow):
     # ... 右键菜单与鼠标拖拽逻辑保持不变 (复制你原来的即可) ...
     def show_context_menu(self, pos):
         menu = QMenu(self)
+
         settings_action = QAction("⚙️ 按键设置", self)
         settings_action.triggered.connect(lambda: self.open_settings_signal.emit())
         menu.addAction(settings_action)
-        exit_action = QAction("❌ 退出程序", self)
+
+        # ✨ 新增：返回主菜单按钮
+        return_action = QAction("🔙 停止并返回主菜单", self)
+        return_action.triggered.connect(lambda: self.return_to_menu_signal.emit())
+        menu.addAction(return_action)
+
+        menu.addSeparator()  # 加一条分割线
+
+        exit_action = QAction("❌ 彻底退出程序", self)
         exit_action.triggered.connect(QApplication.instance().quit)
         menu.addAction(exit_action)
+
         menu.setStyleSheet("QMenu { background-color: white; border: 1px solid gray; }")
         menu.exec(self.mapToGlobal(pos))
 

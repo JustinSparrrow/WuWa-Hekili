@@ -83,6 +83,7 @@ class SettingsWindow(QWidget):
             ("👻 闪避 (Dodge)", "dodge"),
             ("👾 声骸 (Echo)", "echo"),
             ("🔒 锁定 (Lock)", "lock"),
+            ("🎯 处决/核心 (Execution)", "execution"),
             ("🔄 切人-1号位", "intro_1"),
             ("🔄 切人-2号位", "intro_2"),
             ("🔄 切人-3号位", "intro_3")

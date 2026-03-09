@@ -2,6 +2,8 @@ from PySide6.QtWidgets import (QWidget, QVBoxLayout,QPushButton,QApplication,QLa
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QFont
 
+from utils.logger import log
+
 class StartMenu(QWidget):
     open_settings = Signal()        # 点击按键绑定
     open_upload = Signal()          # 点击流程上传
@@ -76,6 +78,10 @@ class StartMenu(QWidget):
         version.setAlignment(Qt.AlignmentFlag.AlignCenter)
         version.setStyleSheet("color: #999; font-size: 10px;")
         layout.addWidget(version)
+
+    def closeEvent(self, event):
+        log.info("👋 启动器关闭，正在退出程序...")
+        QApplication.quit()
 
 if __name__ == "__main__":
     import sys

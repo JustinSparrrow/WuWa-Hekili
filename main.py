@@ -1,5 +1,7 @@
 import sys
 import os
+import time
+
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QTimer
 
@@ -7,172 +9,151 @@ from PySide6.QtCore import QTimer
 from ui.start_menu import StartMenu
 from ui.overlay_window import HekiliOverlay
 from ui.settings_window import SettingsWindow
+from ui.routine_uploader import RoutineUploaderWindow
+from ui.routine_selector import RoutineSelector  # 确保导入了选择器
 
 # 导入逻辑核心
 from utils.asset_manager import AssetManager
 from utils.input_listener import InputListener
 from utils.logger import log
 from core.preset.director import Director
-
-# 导入默认剧本 (未来这里应该由"流程选择"动态加载)
-from configs.team_gabriella_lupa_moning import TEAM_CONFIG, OPENER_SCRIPT, LOOP_SCRIPT, INITIAL_CHAR_INDEX
+import json
 
 
-def main():
-    app = QApplication(sys.argv)
+class HekiliApp:
+    def __init__(self, app_instance):
+        self.app = app_instance
+        self.is_active = False
+        self.overlay = None
+        self.director = None
+        self.input_thread = None
+        self.heartbeat_timer = None
 
-    # ==========================================
-    # 1. 全局变量占位 (初始化为 None)
-    # ==========================================
-    window = None
-    director = None
-    input_thread = None
-    heartbeat_timer = None
-    is_active = False
+        self.menu = StartMenu()
+        self.settings_win = SettingsWindow()
+        self.uploader_win = RoutineUploaderWindow()
+        self.selector_win = RoutineSelector()  # 初始化选择器
 
-    # ==========================================
-    # 2. 初始化 菜单 和 设置窗口
-    # ==========================================
-    menu = StartMenu()
-    settings_win = SettingsWindow()
+        self._connect_signals()
 
-    # ==========================================
-    # 3. 定义核心逻辑 (闭包函数)
-    # ==========================================
+    def _connect_signals(self):
+        self.menu.open_settings.connect(self.settings_win.show)
+        self.menu.open_upload.connect(self.uploader_win.show)
+        # 点击"流程选择" -> 显示选择器
+        self.menu.open_select.connect(self.selector_win.show)
 
-    # 💡 修改 1：增加 is_advance 参数
-    def refresh_ui(is_advance=False):
-        """刷新悬浮窗 UI"""
-        if window and director:
-            data = director.get_visual_data(preview_count=3)
-            # 传给 UI 引擎，决定是播放动画还是瞬间对齐
-            window.update_ui(data, is_advance=is_advance)
+        # 选择器选中后 -> 启动核心
+        self.selector_win.routine_selected.connect(self.start_execution)
 
-    log.info("============== 🚀 Hekili 启动 ==============")
+        self.settings_win.config_saved.connect(self.on_config_reload)
 
-    def start_execution():
-        log.info("正在初始化核心逻辑...")
-        nonlocal window, director, input_thread, heartbeat_timer, is_active
+        self.selector_win.edit_requested.connect(self.uploader_win.load_existing_routine)
 
-        print("🚀 正在初始化核心逻辑...")
+    def run(self):
+        log.info("============== 🚀 Hekili 启动 ==============")
+        self.menu.show()
+        return self.app.exec()
 
-        # A. 隐藏菜单
-        menu.hide()
+    def refresh_ui(self, is_advance=False):
+        if self.overlay and self.director:
+            data = self.director.get_visual_data(preview_count=3)
+            self.overlay.update_ui(data, is_advance=is_advance)
 
-        # B. 初始化资源与导演
+    def stop_execution(self):
+        """停止战斗悬浮窗，返回主菜单"""
+        log.info("🛑 正在停止悬浮窗，返回主菜单...")
+
+        # 1. 停止一切后台活动
+        self.is_active = False
+        if self.heartbeat_timer:
+            self.heartbeat_timer.stop()
+        if self.input_thread:
+            self.input_thread.stop()
+            self.input_thread.wait()  # 等待线程安全关闭
+            self.input_thread = None
+
+        # 2. 关闭悬浮窗
+        if self.overlay:
+            self.overlay.close()
+            self.overlay.deleteLater()
+            self.overlay = None
+            self.director = None
+
+        # 3. 显示主菜单
+        self.menu.show()
+
+    def start_execution(self, json_path):
+        """加载 JSON 并启动核心"""
+        log.info(f"正在加载流程: {json_path}")
+
+        # 加载 JSON 剧本
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
         base_dir = os.path.dirname(os.path.abspath(__file__))
         assets_path = os.path.join(base_dir, "assets", "assets")
         asset_mgr = AssetManager(assets_path)
 
-        director = Director(
-            team_config=TEAM_CONFIG,
-            opener_script=OPENER_SCRIPT,
-            loop_script=LOOP_SCRIPT,
-            start_char_index=INITIAL_CHAR_INDEX,
+        # 实例化导演
+        self.director = Director(
+            team_config={int(k): v for k, v in data["team_config"].items()},
+            opener_script=data["opener_script"],
+            loop_script=data["loop_script"],
+            start_char_index=data["initial_char_index"],
             asset_mgr=asset_mgr
         )
 
-        # C. 初始化并显示悬浮窗
-        window = HekiliOverlay()
-        window.open_settings_signal.connect(settings_win.show)
-        window.show()
+        self.overlay = HekiliOverlay()
+        self.overlay.open_settings_signal.connect(self.settings_win.show)
+        self.overlay.return_to_menu_signal.connect(self.stop_execution)
+        self.overlay.show()
 
-        # D. 定义交互回调
-        def on_action(action_name, is_down):
-            nonlocal is_active
+        self.menu.hide()
 
-            if not is_active:
-                if is_down and action_name == "start_trigger":
-                    is_active = True
-                    log.info("✅ 脚本正式激活！(触发了 start_trigger)")
-                    window.slot_current.setStyleSheet("ActionWidget { border: 4px solid #00FF00; }")
-                    director.reset()
-                    refresh_ui(is_advance=False)
-                else:
-                    if is_down:
-                        log.debug(f"尚未激活，忽略输入: {action_name}")
-                return
+        # 启动定时器和监听
+        self.heartbeat_timer = QTimer()
+        self.heartbeat_timer.timeout.connect(self.on_timer_tick)
+        self.heartbeat_timer.start(50)
 
-            # 如果已激活
-            if is_down:
-                log.debug(f"🎮 收到输入: {action_name}")
+        self.input_thread = InputListener()
+        self.input_thread.action_detected.connect(self.on_action_detected)
+        self.input_thread.start()
 
-            # 导演判定
-            success = director.input_received(action_name, is_down)
-            if success:
-                log.info(f"✅ 动作执行成功: {action_name}")
-                refresh_ui(is_advance=True)
-            elif is_down:
-                # 判定失败，记录案发现场
-                expected_type = director.get_current_script()[director.step_index].get("type")
-                variant = director.get_current_script()[director.step_index].get("variant", "")
-                log.warning(f"❌ 动作错误: 期待 {expected_type}({variant})，实际收到 {action_name}")
+        self.refresh_ui(is_advance=False)
+        log.info("✅ 悬浮窗已就绪，按启动键(X)激活...")
 
-        def timer_tick():
-            if is_active and director.check_auto_advance():
-                log.info("⏱️ 长按时间达标，自动推进！")
-                refresh_ui(is_advance=True)
+    def on_action_detected(self, action_name, is_down):
+        if not self.is_active:
+            if is_down and action_name == "start_trigger":
+                self.is_active = True
+                log.info("🚀 [System] 脚本正式激活！")
+                self.overlay.slot_current.setStyleSheet("ActionWidget { border: 4px solid #00FF00; }")
+                self.director.reset()
+                self.refresh_ui(is_advance=False)
+            return
 
-        log.info("✅ 悬浮窗已启动，等待激活按键...")
+        if self.director.input_received(action_name, is_down):
+            self.refresh_ui(is_advance=True)
 
-        heartbeat_timer = QTimer()
-        heartbeat_timer.timeout.connect(timer_tick)
-        heartbeat_timer.start(50)
+    def on_timer_tick(self):
+        if self.is_active and self.director.check_auto_advance():
+            self.refresh_ui(is_advance=True)
 
-        # G. 启动监听线程
-        input_thread = InputListener()
-        input_thread.action_detected.connect(on_action)
-        input_thread.start()
+    def on_config_reload(self):
+        if self.input_thread and self.input_thread.isRunning():
+            self.input_thread.reload_mapping()
+        if self.overlay:
+            self.refresh_ui(is_advance=False)
 
-        # 💡 修改 5：开机第一眼看到的画面，静态铺好
-        refresh_ui(is_advance=False)
-        print("✅ 悬浮窗已启动，请按启动键(X)激活...")
-
-    # ==========================================
-    # 4. 连接设置相关信号
-    # ==========================================
-
-    def on_config_reload():
-        print("🔄 [System] 配置已修改，正在重载...")
-        if input_thread and input_thread.isRunning():
-            input_thread.reload_mapping()
-
-        if window:
-            # 💡 修改 6：设置改完后，图标可能会变，瞬间刷新不要动画
-            refresh_ui(is_advance=False)
-
-    settings_win.config_saved.connect(on_config_reload)
-
-    # ==========================================
-    # 5. 连接菜单按钮信号
-    # ==========================================
-
-    def show_settings():
-        print("🔘 打开设置窗口")
-        settings_win.show()
-
-    def show_upload():
-        print("🔘 [TODO] 流程上传功能开发中...")
-
-    def show_select_routine():
-        print("🔘 选择默认流程 -> 启动悬浮窗")
-        start_execution()
-
-    menu.open_settings.connect(show_settings)
-    menu.open_upload.connect(show_upload)
-    menu.open_select.connect(show_select_routine)
-
-    # ==========================================
-    # 6. 启动程序
-    # ==========================================
-    menu.show()
-
-    ret = app.exec()
-
-    if input_thread:
-        input_thread.stop()
-    sys.exit(ret)
+    def cleanup(self):
+        if self.input_thread:
+            self.input_thread.stop()
 
 
 if __name__ == "__main__":
-    main()
+    app = QApplication(sys.argv)
+    app.setQuitOnLastWindowClosed(False)
+    controller = HekiliApp(app)
+    ret_code = controller.run()
+    controller.cleanup()
+    sys.exit(ret_code)

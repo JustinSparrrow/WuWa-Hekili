@@ -4,8 +4,8 @@
     "theme": "default",
     "window_opacity": 0.9,
     "heavy_hold_time": 0.5,
-    "window_x": 1326,
-    "window_y": 730
+    "window_x": 1140,
+    "window_y": 653
   },
   "controller": {
     "hardware_mapping": {
@@ -55,8 +55,8 @@
   "keymaps": {
     "xbox": {
       "start_trigger": "xbox_button_x",
-      "basic": "xbox_button_b",
-      "skill": "xbox_button_y",
+      "basic": "xbox_button_menu",
+      "skill": "xbox_dpad_left",
       "ult": "xbox_rb",
       "jump": "xbox_button_a",
       "dash": "xbox_rt",
@@ -65,7 +65,8 @@
       "lock": "xbox_rs",
       "intro_1": "xbox_dpad_up",
       "intro_2": "xbox_dpad_right",
-      "intro_3": "xbox_dpad_down"
+      "intro_3": "xbox_dpad_down",
+      "execution": "xbox_button_a"
     },
     "keyboard": {
       "basic": "mouse_left",
@@ -79,7 +80,8 @@
       "intro_2": "keyboard_2",
       "intro_3": "keyboard_3",
       "start_trigger": "keyboard_x",
-      "lock": "mouse_scroll"
+      "lock": "mouse_scroll",
+      "execution": "keyboard_f"
     }
   }
 }
