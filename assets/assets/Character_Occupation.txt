@@ -1,4 +1,0 @@
-Augusta=greatsword
-Gabriella=gun
-Lupa=greatsword
-Moning=greatsword
