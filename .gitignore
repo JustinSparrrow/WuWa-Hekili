@@ -8,8 +8,8 @@ tests
 assets/kenney_input-prompts_1.4.1
 logs/
 
-build_release.bat
-WuWa_Hekili_Release_v1
+WuWa_Hekili.spec
+dist/
 
 __pycache__/
 *.pyc
