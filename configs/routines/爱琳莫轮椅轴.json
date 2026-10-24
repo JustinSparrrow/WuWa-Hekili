@@ -157,8 +157,9 @@
         },
         {
             "type": "echo",
-            "desc": "声骸",
-            "custom_icon": "echo.png"
+            "desc": "声骸·蓄力中",
+            "custom_icon": "echo.png",
+            "parallel": true
         },
         {
             "type": "jump",
@@ -382,8 +383,9 @@
         },
         {
             "type": "echo",
-            "desc": "声骸",
-            "custom_icon": "echo.png"
+            "desc": "声骸·蓄力中",
+            "custom_icon": "echo.png",
+            "parallel": true
         },
         {
             "type": "jump",

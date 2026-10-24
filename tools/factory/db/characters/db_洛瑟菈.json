@@ -1,0 +1,20 @@
+{
+ "name": "洛瑟菈",
+ "name_en": "Luosela",
+ "code": "Luosela",
+ "rarity": 5,
+ "element": {
+  "cn": "冷凝",
+  "en": "glacio"
+ },
+ "weapon": {
+  "cn": "音感仪",
+  "en": "rectifier"
+ },
+ "gender": "女",
+ "birthplace": "新联邦",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1514097978770092032",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:36:57"
+}

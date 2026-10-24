@@ -1,0 +1,20 @@
+{
+ "name": "卜灵",
+ "name_en": "Buling",
+ "code": null,
+ "rarity": 4,
+ "element": {
+  "cn": "导电",
+  "en": "electro"
+ },
+ "weapon": {
+  "cn": "音感仪",
+  "en": "rectifier"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1429461100965666816",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:40:00"
+}

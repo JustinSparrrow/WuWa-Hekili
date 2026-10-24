@@ -1,0 +1,20 @@
+{
+ "name": "莉莉",
+ "name_en": null,
+ "code": null,
+ "rarity": 5,
+ "element": {
+  "cn": "衍射",
+  "en": "spectro"
+ },
+ "weapon": {
+  "cn": "佩枪",
+  "en": "pistols"
+ },
+ "gender": "女",
+ "birthplace": null,
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1559521973715369984",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:37:24"
+}

@@ -1,11 +1,30 @@
 {
   "settings": {
     "current_device": "keyboard",
-    "theme": "default",
+    "theme": "light",
     "window_opacity": 0.9,
     "heavy_hold_time": 0.5,
-    "window_x": 694,
-    "window_y": 915
+    "strict_tap_check": true,
+    "window_x": 740,
+    "window_y": 794
+  },
+  "timing": {
+    "enabled": true,
+    "input_buffer_ms": 250,
+    "enable_parallel": true,
+    "auto_parallel": [],
+    "durations_ms": {
+      "basic": 380,
+      "heavy": 700,
+      "skill": 520,
+      "ult": 1100,
+      "echo": 520,
+      "execution": 600,
+      "dodge": 320,
+      "jump": 280,
+      "intro": 500
+    },
+    "character_durations": {}
   },
   "controller": {
     "buttons": {
@@ -46,11 +65,11 @@
     "default_filename": {
       "basic": "normal",
       "heavy": "heavy",
-      "skill": "normal",
+      "skill": "skill",
       "ult": "liberation",
       "jump": "jump",
       "dodge": "dodge",
-      "execution": "normal",
+      "execution": "skill",
       "intro": "avatar",
       "echo": "echo"
     }

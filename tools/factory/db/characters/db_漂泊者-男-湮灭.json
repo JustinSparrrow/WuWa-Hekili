@@ -1,0 +1,20 @@
+{
+ "name": "漂泊者-男-湮灭",
+ "name_en": "Rover",
+ "code": null,
+ "rarity": 5,
+ "element": {
+  "cn": "湮灭",
+  "en": "havoc"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "男",
+ "birthplace": "未知",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1242115703531454464",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:39:54"
+}

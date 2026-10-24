@@ -1,0 +1,80 @@
+# 角色 → 武器类型映射
+# 由 tools/factory/wiki_spider.py --occupation 生成（与原有条目合并）
+# 用途：普攻/重击在角色专属目录找不到图时，按武器类型落到
+#       assets/characters/_general/normal_attack/<武器>/
+# 生成时间：2026-10-25 05:41
+
+
+# ---- 以下角色未能写入，补全 db/name_map.json 后重跑 ----
+#   丽贝卡  (pistols)  —— 缺英文名
+#   心  (rectifier)  —— 缺英文名
+#   景燃  (broadblade)  —— 缺英文名
+#   洛瑟菈  (rectifier)  —— 缺英文名
+#   清宵  (sword)  —— 缺英文名
+#   秋水  (pistols)  —— 缺英文名
+#   秧秧·玄翎  (sword)  —— 缺英文名
+#   穗穗  (rectifier)  —— 缺英文名
+#   绯雪  (sword)  —— 缺英文名
+#   莉莉  (pistols)  —— 缺英文名
+#   西格莉卡  (gauntlets)  —— 缺英文名
+#   达妮娅  (rectifier)  —— 缺英文名
+#   锁暝  (sword)  —— 缺英文名
+#   露西  (pistols)  —— 缺英文名
+
+Aemeath=sword
+Augusta=broadblade
+Baizhi=rectifier
+Brant=sword
+Buling=rectifier
+Calcharo=broadblade
+Camellya=sword
+Cantarella=rectifier
+Carlotta=pistols
+Cartethyia=sword
+Changli=sword
+Chisa=broadblade
+Chixia=pistols
+Ciaccona=pistols
+Daniya=rectifier
+Danjin=sword
+Encore=rectifier
+Feixue=sword
+Galbrena=pistols
+Jianxin=gauntlets
+Jingran=broadblade
+Jinhsi=broadblade
+Jiyan=broadblade
+Libeika=pistols
+Lingyang=gauntlets
+Lucy=pistols
+Lumi=broadblade
+Luosela=rectifier
+Lupa=broadblade
+Luuk Herssen=gauntlets
+Lynae=pistols
+Mornye=broadblade
+Mortefi=pistols
+Phoebe=rectifier
+Phrolova=rectifier
+Qingxiao=sword
+Qiushui=pistols
+Qiuyuan=sword
+Roccia=gauntlets
+Rover=sword
+Sanhua=sword
+Shorekeeper=rectifier
+Suisui=rectifier
+Suoming=sword
+Taoqi=broadblade
+Verina=rectifier
+Xiangli Yao=gauntlets
+Xigelika=gauntlets
+Xin=rectifier
+XuanLing=sword
+Yangyang=sword
+Yinlin=rectifier
+Youhu=gauntlets
+Yuanwu=gauntlets
+Zani=gauntlets
+ZheZhi=rectifier
+luno=gauntlets

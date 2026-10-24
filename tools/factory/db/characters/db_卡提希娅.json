@@ -1,0 +1,40 @@
+{
+ "name": "卡提希娅",
+ "name_en": "Cartethyia",
+ "code": "Katixiya",
+ "rarity": 5,
+ "element": {
+  "cn": "气动",
+  "en": "aero"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": null,
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1370471621924728832",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png",
+   "liberation_2.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:38:36"
+}

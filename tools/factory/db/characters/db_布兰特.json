@@ -1,0 +1,40 @@
+{
+ "name": "布兰特",
+ "name_en": "Brant",
+ "code": "Bulante",
+ "rarity": 5,
+ "element": {
+  "cn": "热熔",
+  "en": "fusion"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "男",
+ "birthplace": "黎那汐塔",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1309566040441675776",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:38:50"
+}

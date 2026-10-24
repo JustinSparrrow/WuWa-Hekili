@@ -1,0 +1,48 @@
+{
+ "name": "坎特蕾拉",
+ "name_en": "Cantarella",
+ "code": "Kanteleila",
+ "rarity": 5,
+ "element": {
+  "cn": "湮灭",
+  "en": "havoc"
+ },
+ "weapon": {
+  "cn": "音感仪",
+  "en": "rectifier"
+ },
+ "gender": "女",
+ "birthplace": "黎那汐塔",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1342471419668557824",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png"
+  ],
+  "resonance_skill": [
+   "skill.png",
+   "skill_2.png",
+   "skill_3.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "echo": [
+   "echo.png"
+  ],
+  "character": [
+   "avatar.png",
+   "intro.png",
+   "outro.png"
+  ],
+  "jump": [
+   "jump.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "mixed",
+ "scraped_at": "2026-10-25T05:38:43"
+}

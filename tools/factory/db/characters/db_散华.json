@@ -1,0 +1,38 @@
+{
+ "name": "散华",
+ "name_en": "Sanhua",
+ "code": "Sanhua",
+ "rarity": 4,
+ "element": {
+  "cn": "冷凝",
+  "en": "glacio"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1233492733107564544",
+ "assets": {
+  "normal_attack": [
+   "normal.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:40:18"
+}

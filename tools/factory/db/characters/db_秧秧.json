@@ -1,0 +1,38 @@
+{
+ "name": "秧秧",
+ "name_en": "Yangyang",
+ "code": "Yangyang",
+ "rarity": 4,
+ "element": {
+  "cn": "气动",
+  "en": "aero"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1233436648562032640",
+ "assets": {
+  "normal_attack": [
+   "normal.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:40:05"
+}

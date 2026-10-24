@@ -1,0 +1,52 @@
+{
+ "name": "琳奈",
+ "name_en": "Lynae",
+ "code": "LinNai",
+ "rarity": 5,
+ "element": {
+  "cn": "衍射",
+  "en": "spectro"
+ },
+ "weapon": {
+  "cn": "佩枪",
+  "en": "pistols"
+ },
+ "gender": "女",
+ "birthplace": "新联邦",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1445377391854534656",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "echo": [
+   "echo.png"
+  ],
+  "character": [
+   "avatar.png",
+   "intro.png",
+   "outro.png"
+  ],
+  "jump": [
+   "jump.png",
+   "jump_2.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png",
+   "forte_3.png",
+   "forte_4.png",
+   "forte_5.png",
+   "forte_6.png"
+  ]
+ },
+ "asset_source": "mixed",
+ "scraped_at": "2026-10-25T05:37:01"
+}

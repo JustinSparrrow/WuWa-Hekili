@@ -1,0 +1,43 @@
+{
+ "name": "达妮娅",
+ "name_en": "Daniya",
+ "code": "Daniya",
+ "rarity": 5,
+ "element": {
+  "cn": "热熔",
+  "en": "fusion"
+ },
+ "weapon": {
+  "cn": "音感仪",
+  "en": "rectifier"
+ },
+ "gender": "女",
+ "birthplace": "█ █",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1488852222116831232",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png",
+   "normal_4.png",
+   "normal_5.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png",
+   "liberation_2.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:37:54"
+}

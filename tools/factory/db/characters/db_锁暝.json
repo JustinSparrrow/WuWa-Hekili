@@ -1,0 +1,41 @@
+{
+ "name": "锁暝",
+ "name_en": "Suoming",
+ "code": "Suoming",
+ "rarity": 5,
+ "element": {
+  "cn": "导电",
+  "en": "electro"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": "梦州",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1543075487722901504",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png",
+   "liberation_2.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:36:54"
+}

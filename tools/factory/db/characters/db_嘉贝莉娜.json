@@ -1,0 +1,35 @@
+{
+ "name": "嘉贝莉娜",
+ "name_en": "Galbrena",
+ "code": "JiaBeiLiNa",
+ "rarity": 5,
+ "element": {
+  "cn": "热熔",
+  "en": "fusion"
+ },
+ "weapon": {
+  "cn": "佩枪",
+  "en": "pistols"
+ },
+ "gender": "女",
+ "birthplace": "黎那汐塔",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1415137052791296000",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_3.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:38:18"
+}

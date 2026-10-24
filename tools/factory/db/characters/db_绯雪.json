@@ -1,0 +1,37 @@
+{
+ "name": "绯雪",
+ "name_en": "Feixue",
+ "code": "Feixue",
+ "rarity": 5,
+ "element": {
+  "cn": "冷凝",
+  "en": "glacio"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": "苇原",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1488853937364017152",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png",
+   "liberation_2.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:37:57"
+}

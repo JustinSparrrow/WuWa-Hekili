@@ -1,0 +1,20 @@
+{
+ "name": "漂泊者-男-气动",
+ "name_en": "Rover",
+ "code": null,
+ "rarity": 5,
+ "element": {
+  "cn": "气动",
+  "en": "aero"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "男",
+ "birthplace": "未知",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1353291691268767744",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:39:30"
+}

@@ -1,0 +1,20 @@
+{
+ "name": "维里奈",
+ "name_en": "Verina",
+ "code": null,
+ "rarity": 5,
+ "element": {
+  "cn": "衍射",
+  "en": "spectro"
+ },
+ "weapon": {
+  "cn": "音感仪",
+  "en": "rectifier"
+ },
+ "gender": "女",
+ "birthplace": "新联邦",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1242295554161025024",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:39:43"
+}

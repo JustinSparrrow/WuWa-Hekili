@@ -1,0 +1,38 @@
+{
+ "name": "椿",
+ "name_en": "Camellya",
+ "code": "Chun",
+ "rarity": 5,
+ "element": {
+  "cn": "湮灭",
+  "en": "havoc"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": "未知",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1302065018502307840",
+ "assets": {
+  "normal_attack": [
+   "normal.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:39:02"
+}

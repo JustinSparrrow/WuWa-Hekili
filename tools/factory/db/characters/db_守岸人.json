@@ -1,0 +1,45 @@
+{
+ "name": "守岸人",
+ "name_en": "Shorekeeper",
+ "code": "Shouanren",
+ "rarity": 5,
+ "element": {
+  "cn": "衍射",
+  "en": "spectro"
+ },
+ "weapon": {
+  "cn": "音感仪",
+  "en": "rectifier"
+ },
+ "gender": "女",
+ "birthplace": "黑海岸",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1286814658335739904",
+ "assets": {
+  "normal_attack": [
+   "normal.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "echo": [
+   "echo.png"
+  ],
+  "character": [
+   "avatar.png",
+   "intro.png",
+   "outro.png"
+  ],
+  "jump": [
+   "jump.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "mixed",
+ "scraped_at": "2026-10-25T05:39:04"
+}

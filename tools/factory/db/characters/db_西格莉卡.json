@@ -1,0 +1,41 @@
+{
+ "name": "西格莉卡",
+ "name_en": "Xigelika",
+ "code": "Xigelika",
+ "rarity": 5,
+ "element": {
+  "cn": "气动",
+  "en": "aero"
+ },
+ "weapon": {
+  "cn": "臂铠",
+  "en": "gauntlets"
+ },
+ "gender": "女",
+ "birthplace": "拉海洛",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1478089902761410560",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png",
+   "normal_4.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:38:01"
+}

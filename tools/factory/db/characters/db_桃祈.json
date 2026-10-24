@@ -1,0 +1,20 @@
+{
+ "name": "桃祈",
+ "name_en": "Taoqi",
+ "code": null,
+ "rarity": 4,
+ "element": {
+  "cn": "湮灭",
+  "en": "havoc"
+ },
+ "weapon": {
+  "cn": "长刃",
+  "en": "broadblade"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1240051046261592064",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:40:33"
+}

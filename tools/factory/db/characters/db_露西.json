@@ -1,0 +1,20 @@
+{
+ "name": "露西",
+ "name_en": "Lucy",
+ "code": "Lucy",
+ "rarity": 5,
+ "element": {
+  "cn": "衍射",
+  "en": "spectro"
+ },
+ "weapon": {
+  "cn": "佩枪",
+  "en": "pistols"
+ },
+ "gender": "女",
+ "birthplace": "未知",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1502669582481317888",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:37:48"
+}

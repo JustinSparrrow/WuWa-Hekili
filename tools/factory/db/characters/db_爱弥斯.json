@@ -1,0 +1,53 @@
+{
+ "name": "爱弥斯",
+ "name_en": "Aemeath",
+ "code": "Aimisi",
+ "rarity": 5,
+ "element": {
+  "cn": "热熔",
+  "en": "fusion"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": "拉海洛",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1457744312692867072",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png",
+   "normal_4.png"
+  ],
+  "resonance_skill": [
+   "skill.png",
+   "skill_2.png",
+   "skill_3.png",
+   "skill_4.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png",
+   "liberation_2.png"
+  ],
+  "echo": [
+   "echo.png"
+  ],
+  "character": [
+   "avatar.png",
+   "intro.png",
+   "outro.png"
+  ],
+  "jump": [
+   "jump.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png",
+   "forte_3.png"
+  ]
+ },
+ "asset_source": "mixed",
+ "scraped_at": "2026-10-25T05:38:07"
+}

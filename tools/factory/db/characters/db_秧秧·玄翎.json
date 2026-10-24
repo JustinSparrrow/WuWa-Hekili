@@ -1,0 +1,37 @@
+{
+ "name": "秧秧·玄翎",
+ "name_en": "XuanLing",
+ "code": "XuanLing",
+ "rarity": 5,
+ "element": {
+  "cn": "湮灭",
+  "en": "havoc"
+ },
+ "weapon": {
+  "cn": "迅刀",
+  "en": "sword"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1519669180526559232",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png",
+   "normal_4.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:37:40"
+}

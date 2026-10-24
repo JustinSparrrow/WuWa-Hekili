@@ -1,20 +1,55 @@
+# ============================================================ 编辑器 / IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-assets/assets_temp
-assets/video
-assets/ui
-tests
-assets/kenney_input-prompts_1.4.1
+# ============================================================ 系统杂项
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================ 项目本地数据
+.workbuddy/
 logs/
 
+# ============================================================ Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ============================================================ 大体积 / 生成素材
+# 2.6G 录像，纯调试用，不入库
+assets/video
+# 临时素材目录（工厂中间产物）
+assets/characters_temp
+# 外来按键提示素材原始包
+assets/kenney_input-prompts_1.4.1
+
+# ============================================================ 生成产物（截图 / 临时文件）
+# UI 截图是 `tools/preview_ui.py` 的产物，随时可重生成，不入库；README 保留
+docs/ui/*.png
+docs/ui/*.jpg
+# 测试运行时落盘的数据
+tests/_tmp/
+
+# ============================================================ 打包产物
 WuWa_Hekili.spec
 dist/
 build/
 build.bat
-WuWa_Hekili_v1.0
+WuWa_Hekili_v1.0/
 
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+# ============================================================ 虚拟环境
+.venv/
+venv/
+env/

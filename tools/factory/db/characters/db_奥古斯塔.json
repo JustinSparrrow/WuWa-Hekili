@@ -1,0 +1,52 @@
+{
+ "name": "奥古斯塔",
+ "name_en": "Augusta",
+ "code": "Aogusita",
+ "rarity": 5,
+ "element": {
+  "cn": "导电",
+  "en": "electro"
+ },
+ "weapon": {
+  "cn": "长刃",
+  "en": "broadblade"
+ },
+ "gender": "女",
+ "birthplace": "黎那汐塔",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1400451112145264640",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png"
+  ],
+  "resonance_skill": [
+   "skill.png",
+   "skill_2.png",
+   "skill_3.png",
+   "skill_4.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png",
+   "liberation_2.png"
+  ],
+  "echo": [
+   "echo.png"
+  ],
+  "character": [
+   "avatar.png",
+   "intro.png",
+   "outro.png"
+  ],
+  "jump": [
+   "jump.png",
+   "jump_2.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "mixed",
+ "scraped_at": "2026-10-25T05:38:24"
+}

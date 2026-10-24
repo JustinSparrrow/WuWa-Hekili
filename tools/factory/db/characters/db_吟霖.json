@@ -1,0 +1,38 @@
+{
+ "name": "吟霖",
+ "name_en": "Yinlin",
+ "code": "Yinlin",
+ "rarity": 5,
+ "element": {
+  "cn": "导电",
+  "en": "electro"
+ },
+ "weapon": {
+  "cn": "音感仪",
+  "en": "rectifier"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1239319812692709376",
+ "assets": {
+  "normal_attack": [
+   "normal.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:39:23"
+}

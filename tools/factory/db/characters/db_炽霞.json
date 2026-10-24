@@ -1,0 +1,20 @@
+{
+ "name": "炽霞",
+ "name_en": "Chixia",
+ "code": null,
+ "rarity": 4,
+ "element": {
+  "cn": "热熔",
+  "en": "fusion"
+ },
+ "weapon": {
+  "cn": "佩枪",
+  "en": "pistols"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1240039812638883840",
+ "assets": {},
+ "asset_source": "none",
+ "scraped_at": "2026-10-25T05:40:14"
+}

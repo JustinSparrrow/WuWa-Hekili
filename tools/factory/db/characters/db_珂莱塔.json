@@ -1,0 +1,39 @@
+{
+ "name": "珂莱塔",
+ "name_en": "Carlotta",
+ "code": "Kelaita",
+ "rarity": 5,
+ "element": {
+  "cn": "冷凝",
+  "en": "glacio"
+ },
+ "weapon": {
+  "cn": "佩枪",
+  "en": "pistols"
+ },
+ "gender": "女",
+ "birthplace": "黎那汐塔",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1321977849344999424",
+ "assets": {
+  "normal_attack": [
+   "normal.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png",
+   "liberation_2.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:38:59"
+}

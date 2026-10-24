@@ -1,0 +1,43 @@
+{
+ "name": "釉瑚",
+ "name_en": "Youhu",
+ "code": "Youhu",
+ "rarity": 4,
+ "element": {
+  "cn": "冷凝",
+  "en": "glacio"
+ },
+ "weapon": {
+  "cn": "臂铠",
+  "en": "gauntlets"
+ },
+ "gender": "女",
+ "birthplace": "瑝珑",
+ "wiki_url": "https://wiki.kurobbs.com/mc/item/1287721354505175040",
+ "assets": {
+  "normal_attack": [
+   "normal.png",
+   "normal_2.png",
+   "normal_3.png",
+   "normal_4.png",
+   "normal_5.png",
+   "normal_6.png"
+  ],
+  "resonance_skill": [
+   "skill.png"
+  ],
+  "resonance_liberation": [
+   "liberation.png"
+  ],
+  "character": [
+   "intro.png",
+   "outro.png"
+  ],
+  "forte_circuit": [
+   "forte.png",
+   "forte_2.png"
+  ]
+ },
+ "asset_source": "nanoka",
+ "scraped_at": "2026-10-25T05:40:08"
+}
