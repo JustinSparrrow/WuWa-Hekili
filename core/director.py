@@ -147,7 +147,7 @@ def press_matches(duration, mode, threshold=DEFAULT_HOLD_SECONDS, strict_tap=Tru
 #   - 觉得提示总是抢在前面 -> 调大
 # 直接改 config.json 的 timing.durations_ms 即可，改这里只影响兜底值。
 DEFAULT_DURATIONS_MS = {
-    "basic": 380,       # 普攻一段
+    "basic": 290,       # 普攻一段
     "heavy": 700,       # 重击出手到能接下一个
     "skill": 520,       # 共鸣技能
     "ult": 1100,        # 共鸣解放（变身/大招动画长）

@@ -13,6 +13,8 @@ desktop.ini
 # ============================================================ 项目本地数据
 .workbuddy/
 logs/
+# 每个人的按键映射、窗口位置、手感参数都不一样，首次运行会自动生成
+config.json
 
 # ============================================================ Python
 __pycache__/
@@ -41,13 +43,20 @@ docs/ui/*.png
 docs/ui/*.jpg
 # 测试运行时落盘的数据
 tests/_tmp/
+# 打包时打到一半的日志
+build_log.txt
 
 # ============================================================ 打包产物
-WuWa_Hekili.spec
-dist/
-build/
-build.bat
-WuWa_Hekili_v1.0/
+# 注意：这几条必须写成根目录形式（前面加 /）。
+# 写成 `build/` 会把源码目录 tools/build/ 一起忽略掉。
+/WuWa_Hekili.spec
+/build/
+/dist/
+/WuWa_Hekili_v*/
+WuWa_Hekili_v*.zip
+/WuWa_Hekili_v1.0/
+# 早期手工留下的旧版本快照，内容已并入主线
+/WuWa_Hekili_v1.0.zip
 
 # ============================================================ 虚拟环境
 .venv/

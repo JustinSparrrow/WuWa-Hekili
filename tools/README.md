@@ -10,25 +10,34 @@ tools/
 │   ├── factory_config.json
 │   ├── wiki_spider.py
 │   └── db/characters/   爬下来的角色数据（半成品，基本都是空壳）
-└── checks/              检查与观测：找出问题、量化性能
-    ├── routine_lint.py
-    ├── mem_probe.py
-    ├── mem_bench.py
-    └── check_input_ids.py
+├── checks/              检查与观测：找出问题、量化性能
+│   ├── routine_lint.py
+│   ├── mem_probe.py
+│   ├── mem_bench.py
+│   └── check_input_ids.py
+└── build/               打包辅助（由根目录 build.bat 调用）
+    ├── make_version.py
+    ├── make_zip.py
+    └── size_report.py
 ```
 
 ## factory/ — 素材生产
 
-### `asset_factory_gui.py` — 素材工厂
+### `asset_factory_gui.py` — 素材工坊（启动器）
 
 从录像批量裁图。打开视频 → 框选 8 个固定区域 → 暂停在关键帧按 `1`~`8` 键，
 自动裁切并按序号命名入库（`normal.png` / `normal_2.png` / ...）。
 
 ```bash
-python tools/factory/asset_factory_gui.py
+python tools/factory/asset_factory_gui.py     # 独立开
 ```
 
-配置存在同目录的 `factory_config.json`（上次打开的视频路径、框选区域）。
+**界面代码在 `ui/asset_factory.py`**，这个文件只是一层入口：
+窗口已经并进主菜单的「素材工坊」，和其它窗口共用同一套设计系统（`ui.theme` + `ui/frame`）。
+所以想改样子去改 `ui/asset_factory.py`，这里通常不用动。
+
+配置存在 `factory_config.json`（框选区域 + 框选时的分辨率基准）。
+换分辨率后再打开录像，区域会按比例自动重算，不用重画。
 
 ### `wiki_spider.py` — 角色数据爬虫（**已可用**）
 
@@ -149,6 +158,27 @@ python tools/checks/mem_bench.py --rounds 8000
 ### `check_input_ids.py` — 按键图标 id 校验
 
 核对 `config.json` 里 `keymaps` 引用的图标文件是否都在 `assets/ui/<device>/` 下存在。
+
+## build/ — 打包辅助
+
+这三个脚本不单独用，是 `build.bat` 的三步。拆出来的统一原因是：
+**它们都需要一堆引号和转义，塞在 bat 里既难读又容易在本地代码页下出错。**
+
+| 脚本 | 作用 | 为什么不在 bat 里做 |
+|---|---|---|
+| `make_version.py` | 生成 `VSVersionInfo`，让 exe 属性里显示版本号 | 那个文件是 Python 字面量，bat 拼不出来 |
+| `make_zip.py` | 逐文件压缩 + 占用重试 + 完整性判定 | 系统压缩命令遇到被占用的 dll 会整体失败，**且退出码仍是 0** |
+| `size_report.py` | 统计发布目录体积 | 只是不想在 bat 里拼一长串 shell 命令 |
+
+```bash
+# 一般不用直接调，直接跑根目录的 build.bat
+python tools/build/make_version.py 2.3 build/version_info.txt
+python tools/build/make_zip.py WuWa_Hekili_v2.3 WuWa_Hekili_v2.3_win64.zip
+python tools/build/size_report.py WuWa_Hekili_v2.3
+```
+
+`make_zip.py` 有个关键行为：**跳过的文件里有 dll/pyd 就返回失败**。
+少了动态库的包等于发了个双击就跑不起来的包，这种情况不能当成功。
 
 ## scaffold.py — 素材目录脚手架
 

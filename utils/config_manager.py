@@ -2,6 +2,8 @@ import json
 import os
 import sys
 
+from utils.logger import log
+
 
 class ConfigManager:
     """
@@ -45,14 +47,14 @@ class ConfigManager:
     def load(self):
         """从磁盘重新载入配置。"""
         if not os.path.exists(self.config_path):
-            print("配置文件不存在，生成默认配置...")
+            log.info("配置文件不存在，生成默认配置")
             self.create_default()
 
         try:
             with open(self.config_path, 'r', encoding='utf-8') as f:
                 self.data = json.load(f)
         except Exception as e:
-            print(f"配置文件损坏: {e}")
+            log.warning(f"配置文件损坏: {e}")
 
     def save(self):
         """把内存中的配置写回磁盘（整个文件覆写，调用方自行控制频率）。"""
@@ -60,7 +62,7 @@ class ConfigManager:
             with open(self.config_path, 'w', encoding='utf-8') as f:
                 json.dump(self.data, f, indent=2, ensure_ascii=False)
         except Exception as e:
-            print(f"保存配置失败: {e}")
+            log.error(f"保存配置失败: {e}")
 
     # ================================================================ 访问
 
@@ -147,7 +149,7 @@ class ConfigManager:
                 "enable_parallel": True,
                 "auto_parallel": [],
                 "durations_ms": {
-                    "basic": 380,
+                    "basic": 290,
                     "heavy": 700,
                     "skill": 520,
                     "ult": 1100,
@@ -248,7 +250,7 @@ class ConfigManager:
             with open(self.config_path, 'w', encoding='utf-8') as f:
                 json.dump(default_config, f, indent=2, ensure_ascii=False)
         except Exception as e:
-            print(f"写入默认配置失败: {e}")
+            log.error(f"写入默认配置失败: {e}")
 
         self.data = default_config
 

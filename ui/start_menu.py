@@ -7,7 +7,7 @@
 所以顶部是一块"最近使用"区域 —— 队伍里三个角色的头像 + 轴名 + 步数，
 这才是玩家打开工具时真正想确认的东西。
 
-下面三行入口刻意做成极简文字行（无图标、无边框，hover 才亮），
+下面几行入口刻意做成极简文字行（无图标、无边框，hover 才亮），
 视觉重量全部让给上面的头像区。
 """
 
@@ -141,10 +141,11 @@ class StartMenu(GlassWindow):
     open_settings = Signal()        # 按键绑定
     open_upload = Signal()          # 流程上传 / 编辑
     open_select = Signal()          # 流程选择
+    open_factory = Signal()         # 素材工坊
     start_overlay = Signal()        # 预留
 
     CONTENT_W = 520
-    CONTENT_H = 448
+    CONTENT_H = 524
 
     def __init__(self):
         super().__init__("WUWA HEKILI", self.CONTENT_W, self.CONTENT_H,
@@ -185,6 +186,9 @@ class StartMenu(GlassWindow):
         self.btn_select = NavRow("流程选择", "挑一条已有的轴，进入实战提示")
         self.btn_select.clicked.connect(self.open_select.emit)
 
+        self.btn_factory = NavRow("素材工坊", "从录像里裁切技能图标，补齐缺的素材")
+        self.btn_factory.clicked.connect(self.open_factory.emit)
+
         # hero 区是自绘的，用一块固定高度的占位把后续控件推到正确位置
         spacer = QWidget()
         spacer.setFixedHeight(144)
@@ -193,6 +197,7 @@ class StartMenu(GlassWindow):
         self.body_layout.addWidget(self.btn_settings)
         self.body_layout.addWidget(self.btn_upload)
         self.body_layout.addWidget(self.btn_select)
+        self.body_layout.addWidget(self.btn_factory)
         self.body_layout.addStretch(1)
 
     # ------------------------------------------------------------ 装饰
@@ -203,10 +208,10 @@ class StartMenu(GlassWindow):
         base_x = rect.left() + 20 + 20
         top = rect.top() + HEADER_H + 4
 
-        # ---- 三个入口的承托卡片 ----
-        # 没有它，三行文字会像浮在半空；有它才像 iOS 设置里的分组。
+        # ---- 入口的承托卡片 ----
+        # 没有它，几行文字会像浮在半空；有它才像 iOS 设置里的分组。
         row_top = self.btn_settings.mapTo(self, self.btn_settings.rect().topLeft()).y() - 7
-        row_bot = self.btn_select.mapTo(self, self.btn_select.rect().bottomLeft()).y() + 7
+        row_bot = self.btn_factory.mapTo(self, self.btn_factory.rect().bottomLeft()).y() + 7
         card = QRectF(rect.left() + 12, row_top, rect.width() - 24, row_bot - row_top)
         p.setPen(Qt.PenStyle.NoPen)
         p.setBrush(theme.rgba(theme.CARD_BG, 0.035 if theme.is_dark() else 0.04))
@@ -216,7 +221,7 @@ class StartMenu(GlassWindow):
         p.drawPath(theme.squircle(card, 14))
 
         # 行之间的细分隔线（贴着卡片内边，左右各留 14）
-        for row in (self.btn_settings, self.btn_upload):
+        for row in (self.btn_settings, self.btn_upload, self.btn_select):
             y = row.mapTo(self, row.rect().bottomLeft()).y() + 7
             p.setPen(theme.rgba(theme.DIVIDER, 0.05 if theme.is_dark() else 0.07))
             p.drawLine(card.left() + 14, y, card.right() - 14, y)
@@ -301,7 +306,7 @@ class StartMenu(GlassWindow):
         p.setPen(theme.rgba(theme.IVORY, 0.28))
         p.drawText(QRectF(rect.left() + 22, rect.bottom() - 32, 240, 18),
                    Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter,
-                   "v2.0 · 潮汐界面")
+                   "v2.2 · 潮汐界面")
 
         # 右下角一颗小金点，收边用
         p.setPen(Qt.PenStyle.NoPen)

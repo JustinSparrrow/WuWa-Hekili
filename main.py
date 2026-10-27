@@ -2,6 +2,30 @@ import json
 import os
 import sys
 
+
+def _ensure_std_streams():
+    """
+    windowed 打包（PyInstaller -w）后 sys.stdout / sys.stderr 是 None。
+
+    这时任何一句 print() 都会抛 AttributeError，而最可能触发的恰恰是
+    「首次运行生成配置」「配置损坏」这类最不该崩的路径。这里统一兜个
+    黑洞流，让 print 变成无害的丢弃；真正的日志走 utils.logger 写文件。
+
+    只对打包环境生效，开发时控制台输出照常。
+    """
+    if not getattr(sys, "frozen", False):
+        return
+    for name in ("stdout", "stderr"):
+        if getattr(sys, name, None) is None:
+            try:
+                setattr(sys, name, open(os.devnull, "w", encoding="utf-8"))
+            except OSError:
+                pass
+
+
+# 必须在其它项目模块 import 之前执行：它们在模块级就可能 print
+_ensure_std_streams()
+
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QApplication, QMessageBox
 
@@ -61,6 +85,7 @@ class HekiliApp:
         self.settings_win = None
         self.uploader_win = None
         self.selector_win = None
+        self.factory_win = None
 
         self.menu = StartMenu()
         self._connect_signals()
@@ -86,10 +111,19 @@ class HekiliApp:
                 lambda path: self._get_uploader_win().load_existing_routine(path))
         return self.selector_win
 
+    def _get_factory_win(self):
+        # 素材工坊只有做素材时才用，和编辑器一样懒加载 ——
+        # 它要 import cv2 并扫一遍角色目录，启动阶段没必要付这个代价。
+        if self.factory_win is None:
+            from ui.asset_factory import AssetFactoryWindow
+            self.factory_win = AssetFactoryWindow()
+        return self.factory_win
+
     def _connect_signals(self):
         self.menu.open_settings.connect(lambda: self._get_settings_win().show())
         self.menu.open_upload.connect(lambda: self._get_uploader_win().show())
         self.menu.open_select.connect(lambda: self._get_selector_win().show())
+        self.menu.open_factory.connect(lambda: self._get_factory_win().show())
 
     # ================================================================ 生命周期
 

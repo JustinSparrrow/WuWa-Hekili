@@ -3,12 +3,13 @@ ui — 表现层
 
     theme.py             设计系统：颜色 / 字体 / 连续曲率圆角 / 玻璃面板 / 金环 / 全局 QSS
     frame.py             管理窗口的无边框玻璃外壳（GlassWindow）+ 小标题
-    start_menu.py        启动器（最近使用的轴 + 三个入口）
+    start_menu.py        启动器（最近使用的轴 + 四个入口）
     overlay_window.py    战斗悬浮窗 + 并行轨小窗（胶囊面板、头像、环形进度、格子池）
     widgets.py           单格控件（纯 QPainter 自绘）/ 图片缓存 / 编辑器行
     routine_selector.py  剧本选择
     routine_uploader.py  剧本编辑器（黑话 → 预览 → 保存）
     settings_window.py   按键映射设置（带按键小图预览）
+    asset_factory.py     素材工坊（录像框选 → 裁切技能图标）
 
 渲染策略
 --------

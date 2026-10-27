@@ -16,7 +16,8 @@
 | `win_settings.png` | 按键设置 |
 | `win_selector.png` | 流程选择 |
 | `win_editor.png` | 流程编辑器（第一页） |
-| `light_*.png` | 上面九张的**日间主题**版本（同名，前缀 `light_`） |
+| `win_factory.png` | 素材工坊（带真实录像与框选区域） |
+| `light_*.png` | 上面各张的**日间主题**版本（同名，前缀 `light_`） |
 
 ## 怎么重新生成
 
@@ -42,5 +43,8 @@ python tools/preview_ui.py --live          # 桌面实时预览悬浮窗，右�
 
 ## 注意
 
+- **这些图不进版本库**（`.gitignore` 里排除了 `docs/ui/*.png|jpg`）——
+  它们是随时可重生成的产物，入库只会让仓库越来越重。
+  clone 下来若发现只有这份 README，按上面「怎么重新生成」跑一遍即可。
 - 这些图**不能**直接当素材用（是整屏截图，不是切好的图标）
 - `backdrop.jpg` 来自作者自己的录像，体积 640KB，只作参照，可随时删

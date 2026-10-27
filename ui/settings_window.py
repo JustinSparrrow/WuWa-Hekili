@@ -23,6 +23,7 @@ import ui.theme as theme
 from ui.frame import GlassWindow
 from ui.widgets import get_cached_pixmap
 from utils.config_manager import config
+from utils.logger import log
 from utils.paths import project_root
 
 # 动作清单：中文名 / 说明 / 配置键
@@ -269,6 +270,6 @@ class SettingsWindow(GlassWindow):
                 if value:
                     config.update_setting(f"keymaps.{device}.{key}", value)
 
-        print("💾 双端按键配置已保存！")
+        log.info("[Settings] 双端按键配置已保存")
         self.config_saved.emit()
         self.close()

@@ -35,6 +35,7 @@ assets/
 python tools/factory/icon_fetcher.py
 
 # 备选：自己有录像时，用裁图工具按帧切
+# （也可以从主菜单「素材工坊」直接打开，界面是同一套风格）
 python tools/factory/asset_factory_gui.py
 ```
 

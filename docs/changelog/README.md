@@ -31,6 +31,8 @@ v<主>.<次>-<一句话概括>.md
 | [v1.8](v1.8-技能图标来源.md) | 技能图标批量下载 + 角色档案拆分 | "图片总不能一帧一帧截吧" | `tools/factory/icon_fetcher.py`（新）、`build_db.py`（新）、`asset_manager.py` |
 | [v2.0](v2.0-界面重制.md) | 界面重制（设计系统 + 全部窗口） | "pyqt 做不出好看的界面，来点鸣潮装饰，喜欢苹果那种风格" | `ui/theme.py`（新）、`ui/frame.py`（新）、全部 `ui/*.py`、`tools/preview_ui.py`（新） |
 | [v2.1](v2.1-双主题.md) | 夜间 / 日间双主题 | "白色系我也喜欢，最好能自己选是否开夜间模式" | `ui/theme.py`（调色板化）、全部 `ui/*.py` 的颜色引用、`settings_window.py` |
+| [v2.2](v2.2-素材工坊界面.md) | 素材工坊统一画风并并入主菜单 | "把留给用户自己抠图的程序界面也优化一下…直接并入主菜单吧" | `ui/asset_factory.py`（新）、`tools/factory/asset_factory_gui.py`（改启动器）、`start_menu.py`、`main.py` |
+| [v2.3](v2.3-收尾与打包.md) | 收尾：README 重写 + 打包脚本重构 | "可以收尾了…重构 build.bat，生成新一版的" | `build.bat`（重写）、`tools/build/`（新）、`README.md`、`requirements.txt`、`utils/logger.py`、`config_manager.py`、`routine_uploader.py`、`main.py` |
 
 ## 每份记录必含的六段
 
@@ -65,3 +67,4 @@ v<主>.<次>-<一句话概括>.md
 | 角色数据爬取 | `tools/factory/wiki_spider.py`（产出 `factory/db/characters.json`） |
 | 内存观测 | `tools/checks/mem_probe.py`（外部进程）、`mem_bench.py`（内部压测） |
 | 回归测试 | `tests/test_script_parser.py`、`test_director_press.py`、`test_managers.py` |
+| 打包 | `build.bat` + `tools/build/`（版本信息 / 压缩 / 体积统计） |

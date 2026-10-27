@@ -13,6 +13,7 @@ from core.script_parser import ScriptParser
 from ui.frame import GlassWindow, SectionTitle
 from utils.asset_manager import AssetManager
 from utils.logger import log
+from utils.paths import project_root
 
 
 class RoutineUploaderWindow(GlassWindow):
@@ -328,8 +329,10 @@ class RoutineUploaderWindow(GlassWindow):
             "initial_char_index": 1
         }
 
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        routines_dir = os.path.join(base_dir, "configs", "routines")
+        # 必须走统一根查找：打包后 __file__ 在 _internal 里，
+        # 而读取端（启动器/选择器）找的是 exe 同级的 configs/routines。
+        # 两边各算一遍就会「保存成功但列表里看不到」。
+        routines_dir = os.path.join(str(project_root()), "configs", "routines")
         os.makedirs(routines_dir, exist_ok=True)
 
         file_path = os.path.join(routines_dir, f"{name}.json")

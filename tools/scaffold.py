@@ -41,7 +41,7 @@ from utils.paths import project_root  # noqa: E402
 ROOT = str(project_root())
 CHARS_DIR = os.path.join(ROOT, "assets", "characters")
 
-# 标准子目录。顺序即"素材工厂"里 1-8 号键的顺序，改这里要同步 asset_factory_gui.CATEGORIES
+# 标准子目录。顺序即"素材工坊"里 1-8 号键的顺序，改这里要同步 ui/asset_factory.py 的 CATEGORIES
 STANDARD_SUBS = [
     "normal_attack",
     "jump",
